@@ -1,0 +1,65 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\usepackage{parskip}
+
+\author{Eirik Haustveit}
+\title{Two level inverter PWM techniques}
+\begin{document}
+	
+	\maketitle
+	
+	
+	
+	\section{Sinusoidal-PWM}
+	
+	
+	\section{SPWM with third harmonic injection}
+	
+	We have that the three voltage reference signals are given by:
+	
+	\begin{subequations}
+		\begin{align}
+			u_a(t) = \hat{U}_1 \sin(\theta) + \hat{U}_3 \sin (3 \theta) \\
+			u_b(t) = \hat{U}_1 \sin\left(\theta - \frac{2\pi}{3}\right) + \hat{U}_3 \sin (3 \theta) \\
+			u_c(t) = \hat{U}_1 \sin\left(\theta + \frac{2\pi}{3}\right) + \hat{U}_3 \sin (3 \theta)
+		\end{align}
+	\end{subequations}
+	
+	
+	
+	Where $\hat{U}_1$ is the amplitude of the fundamental, $\hat{U}_3$ is the amplitude of the third harmonic component, and $\theta = \omega t$.
+	
+	For a given set of phase voltages, the line voltage is given by:
+	
+	\begin{align}
+		u_{ab}(t) &= u_a(t) - u_b(t)\\
+		&= \left(\hat{U}_1 \sin(\theta) + \hat{U}_3 \sin (3 \theta)\right) - \left(\hat{U}_1 \sin\left(\theta - \frac{2\pi}{3}\right) + \hat{U}_3 \sin (3 \theta) \right)
+	\end{align}
+	
+	
+	It is important to optimize the value of $\hat{U}_3$, while keeping the resulting amplitude of the control signal $u(t)$ at unity. The three phase control signals have equal shape, and are only shifted in time, the control signal for phase $a$ is therefore used, renamed as $u$ for the sake of emphasizing the generality of the discussion. We find the maximum value of $u$ by setting it's derivative equal to zero. 
+	
+	\begin{equation}
+		\frac{\mathrm{d}}{\mathrm{d}t} u(t) = \frac{\mathrm{d}}{\mathrm{d}t} \left(\sin(\theta) + \hat{U}_3 \sin (3 \theta) \right) = 0
+	\end{equation}
+	
+	\begin{equation}
+		u^{'}(t) = \cos(\theta) + 3 \hat{U}_3 \cos (3 \theta) = 0
+	\end{equation}
+	
+	\begin{equation}
+		\theta + \arccos \left( 3 \hat{U}_3 \cos (3 \theta) \right) = 1
+	\end{equation}
+	
+	\begin{equation}
+		\hat{U}_3 = \frac{1}{6}
+	\end{equation}
+	
+	\section{Space Vector PWM}
+	
+\end{document}
